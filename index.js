@@ -5,7 +5,7 @@ const https = require("https");
 
 require("dotenv").config();
 
-const token = process.env.TOKEN;
+const token = process.env.TELEGRAM_TOKEN;
 const bot = new TelegramBot(token, { polling: true });
 
 let coinPrice = "";
@@ -111,12 +111,12 @@ bot.onText(/\/blog/, (msg) => {
   bot.sendMessage(msg.chat.id, "https://nieuws.bitcoinmeester.nl/");
 });
 
-// command shop
+// command nieuws
 bot.onText(/\/nieuws/, (msg) => {
   bot.sendMessage(msg.chat.id, "https://nieuws.bitcoinmeester.nl/");
 });
 
-// command /wesbite
-bot.onText(/\/god/, (msg) => {
+// command /shop
+bot.onText(/\/shop/, (msg) => {
   bot.sendMessage(msg.chat.id, "https://bitcoinmeester.shop/");
 });
