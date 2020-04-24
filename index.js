@@ -1,14 +1,15 @@
 process.env["NTBA_FIX_319"] = 1;
+require("dotenv").config();
 
 const TelegramBot = require("node-telegram-bot-api");
 const https = require("https");
-
-require("dotenv").config();
 
 const token = process.env.TELEGRAM_TOKEN;
 const bot = new TelegramBot(token, { polling: true });
 
 let coinPrice = "";
+let koopPrice = "";
+let verkoopPrice = "";
 
 // koers command
 bot.onText(/\/info (.+)/, (msg, match) => {
@@ -85,38 +86,45 @@ bot.onText(/\/verkoop (.+)/, (msg, match) => {
 
 // command - /start
 bot.onText(/\/start/, (msg) => {
-  bot.sendMessage(msg.chat.id, "Welcome");
+  bot.sendMessage(msg.chat.id, "Welkom");
+});
+
+// command - /help
+bot.onText(/\/help/, (msg) => {
+  bot.sendMessage(
+    msg.chat.id,
+    "/info [ticker] - Uitgebreide prijsinfo van een munt \n \n/koop [ticker] - huidige koopprijs van een munt \n \n/verkoop huidige verkoopprijs van een munt \n \n/admins - Overzicht van de admins \n \n/socials - Overzicht van social media kanalen van Bitcoin Meester \n\n/nieuws - Bitcoin Meester blog \n \n/shop - Bitcoin Meester merchandise"
+  );
 });
 
 // command - /admins
 bot.onText(/\/admins/, (msg) => {
-  bot.sendMessage(msg.chat.id, "@Dutch_christiaan, @rmeijams, @Martijnnnnn");
-});
-
-// command - /regels
-bot.onText(/\/regels/, (msg) => {
-  bot.sendMessage(msg.chat.id, "Niet shillen");
+  bot.sendMessage(
+    msg.chat.id,
+    "@boyd56 - The Boss😎 \n\n@mjz1234 - The Boss😎 \n\n@Dutch_christiaan - Marketing Manager🤓\n\n@rmeijams - Online Marketing/Content⌨️\n\n@Martijnnnnn - Online Marketing💻\n\n @Maxime217 - Support📞"
+  );
 });
 
 // command /socials
 bot.onText(/\/socials/, (msg) => {
   bot.sendMessage(
     msg.chat.id,
-    "Twitter: https://twitter.com/bitcoin_meester \nFacebook: https://www.facebook.com/bitcoinmeester \nInstagram: https://www.instagram.com/bitcoinmeester/ \nBlog: https://nieuws.bitcoinmeester.nl/"
+    "Twitter - https://twitter.com/bitcoin_meester \n\nFacebook - https://www.facebook.com/bitcoinmeester \n\nInstagram - https://www.instagram.com/bitcoinmeester/ \n\nBlog - https://nieuws.bitcoinmeester.nl/"
   );
-});
-
-// command /blog
-bot.onText(/\/blog/, (msg) => {
-  bot.sendMessage(msg.chat.id, "https://nieuws.bitcoinmeester.nl/");
 });
 
 // command nieuws
 bot.onText(/\/nieuws/, (msg) => {
-  bot.sendMessage(msg.chat.id, "https://nieuws.bitcoinmeester.nl/");
+  bot.sendMessage(
+    msg.chat.id,
+    "Dagelijks nieuws over crypto📰🤓\n\nhttps://nieuws.bitcoinmeester.nl/"
+  );
 });
 
 // command /shop
 bot.onText(/\/shop/, (msg) => {
-  bot.sendMessage(msg.chat.id, "https://bitcoinmeester.shop/");
+  bot.sendMessage(
+    msg.chat.id,
+    "Bitcoin Meester Merchandise👕 \n\nhttps://bitcoinmeester.shop/"
+  );
 });
