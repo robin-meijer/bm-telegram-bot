@@ -1,7 +1,7 @@
 {
-  "name": "bitcoinmeestertelegrambot",
+  "name": "bitladonbot",
   "version": "1.0.0",
-  "description": "Telegram Bot voor Bitcoin Meester",
+  "description": "Telegram Bot for Bitladon",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
@@ -11,6 +11,7 @@
   "dependencies": {
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "node-cron": "^2.0.3",
     "node-telegram-bot": "^0.1.9",
     "node-telegram-bot-api": "^0.40.0"
   }
